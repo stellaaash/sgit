@@ -1,4 +1,4 @@
-# `sgit`, A Simple Git Configuration Tool
+# `sgit` - A Simple Git Configuration Tool
 
 This project aims to replace my current bash script for configuring git on a new
 machine. It simply calls the git executable with the right options.
