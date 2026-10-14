@@ -7,7 +7,11 @@ pub fn main(init: std.process.Init) !void {
 
     std.debug.print("Welcome to Simple Git (sgit)!\n\n", .{});
 
-    std.debug.print("Printing current configuration...\n", .{});
+    try print_config(allocator, io);
+}
+
+fn print_config(allocator: std.mem.Allocator, io: std.Io) !void {
+    std.debug.print("[!] - Printing current configuration...\n", .{});
     const run_options: std.process.RunOptions = .{
         .argv = &.{ "git", "config", "-l" },
     };
