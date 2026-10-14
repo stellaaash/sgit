@@ -8,7 +8,16 @@ pub fn main(init: process.Init) !void {
 
     std.debug.print("Welcome to Simple Git (sgit)!\n\n", .{});
 
-    try print_config(allocator, io);
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "--unset", "user.name" });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "--unset", "user.email" });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "--unset", "init.defaultbranch" });
+
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "user.name", "Aisling Fontaine" });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "user.email", "aisling.fontaine@pm.me" });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "pull.rebase", "true" });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "init.defaultbranch", "main" });
+
+    std.debug.print("[!] - Configuration done! Don't forget to setup your ssh key!\n", .{});
 }
 
 fn print_config(allocator: std.mem.Allocator, io: std.Io) !void {
