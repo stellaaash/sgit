@@ -25,14 +25,6 @@ pub fn main(init: process.Init) !void {
     std.debug.print("[!] - Configuration done! Don't forget to setup your ssh key!\n", .{});
 }
 
-fn print_config(allocator: std.mem.Allocator, io: std.Io) !void {
-    std.debug.print("[!] - Printing current configuration...\n", .{});
-
-    const proc = try run_executable(allocator, io, &.{ "git", "config", "-l" });
-
-    std.debug.print("{s}\n", .{proc.stdout});
-}
-
 /// Simple wrapper over std.process.run, taking argv and running the executable.
 fn run_executable(allocator: std.mem.Allocator, io: std.Io, argv: []const []const u8) process.RunError!process.RunResult {
     const run_options: process.RunOptions = .{
