@@ -12,10 +12,15 @@ pub fn main(init: process.Init) !void {
     _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "--unset", "user.email" });
     _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "--unset", "init.defaultbranch" });
 
-    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "user.name", "Aisling Fontaine" });
-    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "user.email", "aisling.fontaine@pm.me" });
-    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "pull.rebase", "true" });
-    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "init.defaultbranch", "main" });
+    const username = "Aisling Fontaine";
+    const email = "aisling.fontaine@pm.me";
+    const pull_rebase = "true";
+    const init_defaultbranch = "main";
+
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "user.name", username });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "user.email", email });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "pull.rebase", pull_rebase });
+    _ = try run_executable(allocator, io, &.{ "git", "config", "--global", "init.defaultbranch", init_defaultbranch });
 
     std.debug.print("[!] - Configuration done! Don't forget to setup your ssh key!\n", .{});
 }
